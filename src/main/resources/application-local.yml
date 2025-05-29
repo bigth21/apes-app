@@ -10,3 +10,10 @@ spring:
       ddl-auto: create
     show-sql: true
     open-in-view: false
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: trace
