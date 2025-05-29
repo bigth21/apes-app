@@ -2,7 +2,7 @@ spring:
   application.name: apes
 
   datasource:
-    url: jdbc:mysql://localhost:3306/apes
+    url: jdbc:mysql://localhost:3306/apes?serverTimezone=UTC&useLegacyDatetimeCode=false
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
