@@ -23,9 +23,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(Customizer.withDefaults())
-                .logout(Customizer.withDefaults())
+                .logout(logout -> logout
+                        .logoutUrl("/sign-out")
+                        .logoutSuccessUrl("/sign-in?logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID"))
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .formLogin(Customizer.withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/sign-in")
+                        .loginProcessingUrl("/sign-in"))
                 .sessionManagement(session -> session
                         .sessionConcurrency(concurrency -> concurrency
                                 .maximumSessions(1)))
@@ -33,6 +39,7 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
                         .requestMatchers(HttpMethod.GET, "/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }
