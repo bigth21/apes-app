@@ -1,5 +1,11 @@
 @import url("normalize.css");
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Rubik, sans-serif;
     background-color: #f7f7f7;
@@ -8,13 +14,25 @@ body {
 .navbar {
     background-color: black;
     color: white;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .brand {
+.navbar-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    max-width: 2.5rem;
+    height: auto;
+}
+
+.brand {
     font-size: 1.5rem;
     font-weight: bold;
     color: white;
