@@ -32,7 +32,8 @@
       </div>
     </div>
     <h1 class="sign-in-title">Please Sign In</h1>
-    <form class="sign-in-form" th:object="${user}" th:action="@{/sign-in}" method="post" autocomplete="on">
+    <!--  TODO: Auto Complete  -->
+    <form class="sign-in-form" th:object="${user}" th:action="@{/sign-in}" th:method="post">
       <div>
         <!--  TODO: Change type to email  -->
         <input th:field="*{username}" type="text" placeholder="Username" autocomplete="username" required/>
