@@ -85,7 +85,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 360px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -125,4 +125,52 @@ body {
 
 .sign-in-form button:hover {
     background-color: #222;
+}
+
+.alert-error {
+    display: flex;
+    align-items: center;
+    background-color: #FFF5F5; /* 연한 붉은 배경 */
+    border: 1px solid #FF5A5F; /* 붉은 테두리 */
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.alert-error .icon {
+    font-size: 24px;
+    margin-right: 12px;
+    color: #FF5A5F;
+}
+
+.alert-error .message {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.alert-logout {
+    display: flex;
+    align-items: center;
+    background-color: #FFF8E5;
+    border: 1px solid #FFA500;
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.alert-logout .icon {
+    font-size: 24px;
+    margin-right: 12px;
+    color: #FFA500;
+}
+
+.alert-logout .message {
+    font-size: 14px;
+    line-height: 1.4;
 }

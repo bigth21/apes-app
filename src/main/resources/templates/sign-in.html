@@ -19,12 +19,17 @@
 
 <div class="sign-in-wrapper">
   <section class="sign-in-container">
-    <!--  TODO: 예외처리 및 로그아웃 메시지 노출 -> 노란색  -->
-    <div th:if="${param.error}">
-      Invalid username and password.
+    <div th:if="${param.error}" class="alert-error">
+      <div class="icon">❌</div>
+      <div class="message">
+        Invalid username and password.
+      </div>
     </div>
-    <div th:if="${param.logout}">
-      You have been signed out.
+    <div th:if="${param.logout}" class="alert-logout">
+      <div class="icon">🔔</div>
+      <div class="message">
+        You have been signed out.
+      </div>
     </div>
     <h1 class="sign-in-title">Please Sign In</h1>
     <form class="sign-in-form" th:action="@{/sign-in}" method="post">
