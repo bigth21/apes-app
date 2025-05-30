@@ -24,7 +24,7 @@ public class SecurityConfig {
         http
                 .csrf(Customizer.withDefaults())
                 .logout(logout -> logout
-                        .logoutUrl("/sign-out") // TODO: SignOut 확인 메시지(확인버튼)
+                        .logoutUrl("/sign-out")
                         .logoutSuccessUrl("/sign-in?logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"))
