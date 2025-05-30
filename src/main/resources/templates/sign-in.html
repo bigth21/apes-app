@@ -36,7 +36,7 @@
     <form class="sign-in-form" th:object="${user}" th:action="@{/sign-in}" th:method="post">
       <div>
         <!--  TODO: Change type to email  -->
-        <input th:field="*{username}" type="text" placeholder="Username" autocomplete="username" required/>
+        <input th:field="*{username}" type="text" placeholder="Username" autocomplete="username" autofocus required/>
       </div>
       <div>
         <input th:field="*{password}" type="password" placeholder="Password" autocomplete="current-password" required/>
