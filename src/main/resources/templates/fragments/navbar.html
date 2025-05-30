@@ -7,8 +7,16 @@
     <ul>
       <li><a th:href="@{/}">Home</a></li>
       <li><a th:href="@{/about}">About</a></li>
-      <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Sign In</a></li>
-      <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sign Out</a></li>
+      <li sec:authorize="!isAuthenticated()">
+        <form th:action="@{/sign-in}" method="get">
+          <button type="submit">Sign In</button>
+        </form>
+      </li>
+      <li sec:authorize="isAuthenticated()">
+        <form th:action="@{/sign-out}" method="post">
+          <button type="submit">Sign Out</button>
+        </form>
+      </li>
     </ul>
   </nav>
 </div>

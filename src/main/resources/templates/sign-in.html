@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign In</title>
+
+  <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="sign-in-wrapper">
+  <section class="sign-in-container">
+    <div th:if="${param.error}" class="alert-error">
+      <div class="icon">❌</div>
+      <div class="message">
+        Invalid username and password.
+      </div>
+    </div>
+    <div th:if="${param.logout}" class="alert-logout">
+      <div class="icon">🔔</div>
+      <div class="message">
+        You have been signed out.
+      </div>
+    </div>
+    <h1 class="sign-in-title">Please Sign In</h1>
+    <!--  TODO: Auto Complete  -->
+    <form class="sign-in-form" th:object="${user}" th:action="@{/sign-in}" th:method="post">
+      <div>
+        <!--  TODO: Change type to email  -->
+        <input th:field="*{username}" type="text" placeholder="Username" autocomplete="username" required/>
+      </div>
+      <div>
+        <input th:field="*{password}" type="password" placeholder="Password" autocomplete="current-password" required/>
+      </div>
+      <button type="submit" value="Sign In">Sign In</button>
+    </form>
+  </section>
+</div>
+
+</body>
+</html>
