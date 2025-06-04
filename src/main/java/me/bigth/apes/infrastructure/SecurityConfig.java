@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .username("user")
                 .password("1234")
                 .passwordEncoder(passwordEncoder::encode)
-                .roles("USER")
+                .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user);
     }
