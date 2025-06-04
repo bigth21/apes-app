@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(indexes = @Index(name = "idx_userid_authorityid", columnList = "userId, authorityId", unique = true))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class UserAuthority extends BaseEntity {
