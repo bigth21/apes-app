@@ -11,4 +11,6 @@ public class ApesApplication {
     }
 
 }
-// TODO: 회원탈퇴
+// TODO
+//  - Sign Out
+//  - CSRF 403 handling

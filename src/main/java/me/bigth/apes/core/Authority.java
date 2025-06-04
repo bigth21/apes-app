@@ -13,4 +13,8 @@ import lombok.NoArgsConstructor;
 public class Authority extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public Authority(Role role) {
+        this.role = role;
+    }
 }
