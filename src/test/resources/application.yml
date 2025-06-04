@@ -1,4 +1,4 @@
 spring:
   application.name: apes
   profiles:
-    active: local
+    active: test
