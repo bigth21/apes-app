@@ -1,13 +1,12 @@
 package me.bigth.apes.core;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(indexes = @Index(name = "idx_role", columnList = "role", unique = true))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Authority extends BaseEntity {

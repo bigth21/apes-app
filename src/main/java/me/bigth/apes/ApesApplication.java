@@ -12,5 +12,8 @@ public class ApesApplication {
 
 }
 // TODO
-//  - Sign Out
 //  - CSRF 403 handling
+//  - Add sign-up funnels
+//  - Autocomplete of username and password
+//  - I18N
+//  - Add DB configuration management tool

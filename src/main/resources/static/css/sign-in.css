@@ -1,3 +1,4 @@
+/* TODO: Remove sign-in prefix*/
 .sign-in-wrapper {
     display: flex;
     justify-content: center;
@@ -38,6 +39,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    width: 100%;
 }
 
 .sign-in-form button {
