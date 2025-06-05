@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
                         .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }
