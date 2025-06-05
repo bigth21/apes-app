@@ -10,13 +10,3 @@ services:
       MYSQL_DATABASE: apes
     ports:
       - "3306:3306"
-
-  mysql-db-test:
-    image: mysql:8
-    container_name: mysql-test
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: apes
-    ports:
-      - "3307:3306"
