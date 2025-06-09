@@ -29,12 +29,18 @@ public class SignUpController {
     public String signUp(@ModelAttribute("user") @Valid SignUpForm form,
                          BindingResult result) {
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             return "sign-up";
         }
 
         Optional<User> maybeUser = userRepository.findByUsername(form.getUsername());
         if (maybeUser.isPresent()) {
             result.rejectValue("username", "error.user", "User already exists");
+            return "sign-up";
+        }
+
+        if (!form.getPassword().equals(form.getConfirmPassword())) {
+            result.rejectValue("password", "error.password", "Passwords do not match");
             return "sign-up";
         }
         userService.signUp(form.getUsername(), form.getPassword());
