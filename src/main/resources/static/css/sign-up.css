@@ -1,4 +1,4 @@
-.wrapper {
+.sign-up-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,34 +6,34 @@
     padding: 0 1rem;
 }
 
-.container {
+.sign-up-container {
     background-color: white;
     padding: 2rem 3rem;
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 60vw;
+    max-width: 30rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.title {
+.sign-up-title {
     margin-bottom: 1.5rem;
     font-size: 1.75rem;
     font-weight: bold;
     color: #000;
 }
 
-form {
+.sign-up-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 80%;
 }
 
-input {
+.sign-up-input {
     padding: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -41,7 +41,7 @@ input {
     width: 100%;
 }
 
-button {
+.sign-up-button {
     background-color: #000;
     color: white;
     padding: 0.75rem;
