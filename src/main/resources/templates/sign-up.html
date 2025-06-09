@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign Up</title>
+
+  <link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link rel="stylesheet" th:href="@{/css/navbar.css}">
+  <link rel="stylesheet" th:href="@{/css/sign-up.css}">
+</head>
+<body>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+<div class="sign-up-wrapper">
+  <div class="sign-up-container">
+    <h1 class="sign-up-title">Please Sign Up</h1>
+    <form class="sign-up-form" th:object="${user}" th:method="post" th:action="@{/sign-up}">
+      <!--   TODO: Add placeholder event like google   -->
+      <label>
+        <input class="sign-up-input" type="email" th:field="*{username}" placeholder="Username" autofocus required>
+        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+      </label>
+      <label>
+        <input class="sign-up-input" type="password" th:field="*{password}" placeholder="Password" required>
+      </label>
+      <label>
+        <input class="sign-up-input" type="password" th:field="*{confirmPassword}" placeholder="Confirm Password" required>
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+      </label>
+      <button class="sign-up-button" type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
