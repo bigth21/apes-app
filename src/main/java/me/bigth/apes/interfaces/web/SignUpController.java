@@ -29,7 +29,6 @@ public class SignUpController {
     public String signUp(@ModelAttribute("user") @Valid SignUpForm form,
                          BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
             return "sign-up";
         }
 
