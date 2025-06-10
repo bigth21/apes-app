@@ -43,6 +43,7 @@ public class SignUpController {
             return "sign-up";
         }
         userService.signUp(form.getUsername(), form.getPassword());
+        // TODO: Send email verification link or code
         return "redirect:/sign-in";
     }
 }
