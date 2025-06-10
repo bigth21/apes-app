@@ -12,8 +12,9 @@ public class ApesApplication {
 
 }
 // TODO
+//  - Create CustomUserDetails
+//  - Username(email) verification
 //  - CSRF 403 handling
-//  - Add sign-up funnels
 //  - Autocomplete of username and password
 //  - I18N
 //  - Add DB configuration management tool
