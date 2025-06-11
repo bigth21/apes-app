@@ -19,9 +19,6 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 16)
     private UserState state;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
-    private SignUpStatus signUpStatus;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<UserAuthority> userAuthorities;
@@ -29,7 +26,6 @@ public class User extends BaseEntity {
     public User(String username, String password, List<Authority> authorities) {
         this.username = username;
         this.state = UserState.INACTIVE;
-        this.signUpStatus = SignUpStatus.PENDING_EMAIL_VERIFICATION;
         this.password = password;
         this.userAuthorities = authorities.stream()
                 .map(a -> new UserAuthority(this, a))
