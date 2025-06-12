@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
+                        .requestMatchers("/tests/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
                         .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()

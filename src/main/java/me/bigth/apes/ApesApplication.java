@@ -15,6 +15,7 @@ public class ApesApplication {
 //  - Username(email) verification
 //      - When add authenticationFailureHandler, make custom exception extend AccountStatusException
 //  - CSRF 403 handling
+//  - 500 handling
 //  - Autocomplete of username and password
 //  - I18N
 //  - Add DB configuration management tool
