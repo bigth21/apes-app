@@ -33,15 +33,34 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionConcurrency(concurrency -> concurrency
                                 .maximumSessions(1)))
-                .authorizeHttpRequests(auth -> auth
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/sign-up").permitAll()
-                        .anyRequest().authenticated());
+                .authorizeHttpRequests(auth -> {
+                    auth
+                            .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
+                            .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
+                            .requestMatchers(HttpMethod.GET, "/").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/sign-up").permitAll();
+
+                    if (isProfileEnabled("local") || isProfileEnabled("test")) {
+                        auth.requestMatchers("/tests/**").permitAll();
+                    } else {
+                        auth.requestMatchers("/tests/**").denyAll();
+                    }
+
+                    auth.anyRequest().authenticated();
+                });
         return http.build();
+    }
+
+    private boolean isProfileEnabled(String profile) {
+        String[] activeProfiles = System.getProperty("spring.profiles.active", "").split(",");
+        for (String activeProfile : activeProfiles) {
+            if (profile.equals(activeProfile.trim())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Bean
