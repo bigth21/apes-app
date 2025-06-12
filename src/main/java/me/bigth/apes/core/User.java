@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,18 +20,14 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 16)
     private UserState state;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
-    private SignUpStatus signUpStatus;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<UserAuthority> userAuthorities;
 
-    public User(String username, String password, List<Authority> authorities) {
+    public User(String username, String password, UserState state, List<Authority> authorities) {
         this.username = username;
-        this.state = UserState.INACTIVE;
-        this.signUpStatus = SignUpStatus.PENDING_EMAIL_VERIFICATION;
         this.password = password;
+        this.state = state;
         this.userAuthorities = authorities.stream()
                 .map(a -> new UserAuthority(this, a))
                 .toList();

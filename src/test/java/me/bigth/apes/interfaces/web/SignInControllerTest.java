@@ -1,9 +1,6 @@
 package me.bigth.apes.interfaces.web;
 
-import me.bigth.apes.core.Authority;
-import me.bigth.apes.core.Role;
-import me.bigth.apes.core.User;
-import me.bigth.apes.core.UserRepository;
+import me.bigth.apes.core.*;
 import me.bigth.apes.infrastructure.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -42,7 +39,7 @@ class SignInControllerTest {
     @WithAnonymousUser
     void signIn() throws Exception {
         Mockito.when(userRepository.findByUsernameWithAuthorities("user"))
-                .thenReturn(Optional.of(new User("user", "{noop}1234", List.of(new Authority(Role.USER)))));
+                .thenReturn(Optional.of(new User("user", "{noop}1234", UserState.ACTIVE, List.of(new Authority(Role.USER)))));
 
         mockMvc.perform(post("/sign-in")
                         .with(csrf())
@@ -50,6 +47,20 @@ class SignInControllerTest {
                         .param("password", "1234"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    @WithAnonymousUser
+    void signIn_inactiveUser() throws Exception {
+        Mockito.when(userRepository.findByUsernameWithAuthorities("user"))
+                .thenReturn(Optional.of(new User("user", "{noop}1234", UserState.INACTIVE, List.of(new Authority(Role.USER)))));
+
+        mockMvc.perform(post("/sign-in")
+                        .with(csrf())
+                        .param("username", "user")
+                        .param("password", "1234"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/sign-in?error"));
     }
 
     @Test

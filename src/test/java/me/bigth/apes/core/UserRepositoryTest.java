@@ -29,7 +29,7 @@ class UserRepositoryTest {
         List<Authority> authorities = List.of(new Authority(Role.USER), new Authority(Role.ADMIN));
         authorityRepository.saveAll(authorities);
 
-        userRepository.save(new User("username", "password", authorities));
+        userRepository.save(new User("username", "password", UserState.ACTIVE, authorities));
 
         entityManager.flush();
         entityManager.clear();
