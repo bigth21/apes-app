@@ -5,16 +5,16 @@
       <a class="brand" th:href="@{/}">Apes</a>
     </div>
     <ul>
-      <li><a th:href="@{/}" th:text="#{view.nav.home}">Home</a></li>
-      <li><a th:href="@{/about}" th:text="#{view.nav.about}">About</a></li>
+      <li><a th:href="@{/}" th:text="#{nav.home}">Home</a></li>
+      <li><a th:href="@{/about}" th:text="#{nav.about}">About</a></li>
       <li sec:authorize="!isAuthenticated()">
         <form th:action="@{/sign-in}" method="get">
-          <button type="submit" th:text="#{view.nav.sign-in}">Sign In</button>
+          <button type="submit" th:text="#{nav.sign-in}">Sign In</button>
         </form>
       </li>
       <li sec:authorize="isAuthenticated()">
         <form th:action="@{/sign-out}" method="post">
-          <button type="submit" th:text="#{view.nav.sign-out}">Sign Out</button>
+          <button type="submit" th:text="#{nav.sign-out}">Sign Out</button>
         </form>
       </li>
     </ul>
