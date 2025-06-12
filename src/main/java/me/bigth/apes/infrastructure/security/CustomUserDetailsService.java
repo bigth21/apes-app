@@ -1,9 +1,8 @@
-package me.bigth.apes.infrastructure;
+package me.bigth.apes.infrastructure.security;
 
 import lombok.RequiredArgsConstructor;
 import me.bigth.apes.core.User;
 import me.bigth.apes.core.UserRepository;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

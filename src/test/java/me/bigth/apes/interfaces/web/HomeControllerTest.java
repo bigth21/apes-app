@@ -1,7 +1,7 @@
 package me.bigth.apes.interfaces.web;
 
 import me.bigth.apes.core.UserRepository;
-import me.bigth.apes.infrastructure.SecurityConfig;
+import me.bigth.apes.infrastructure.security.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
