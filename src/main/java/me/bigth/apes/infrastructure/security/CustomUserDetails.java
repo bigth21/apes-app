@@ -1,4 +1,4 @@
-package me.bigth.apes.infrastructure;
+package me.bigth.apes.infrastructure.security;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
