@@ -1,6 +1,9 @@
 package me.bigth.apes.infrastructure;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import me.bigth.apes.core.Role;
+import me.bigth.apes.core.User;
 import me.bigth.apes.core.UserState;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,12 +15,23 @@ import java.util.List;
 import static me.bigth.apes.core.UserState.ACTIVE;
 import static me.bigth.apes.core.UserState.SUSPENDED;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomUserDetails implements UserDetails {
     private Long id;
     private String username;
     private String password;
     private UserState state;
     private List<Role> roles;
+
+    public static CustomUserDetails from(User user) {
+        var userDetails = new CustomUserDetails();
+        userDetails.id = user.getId();
+        userDetails.username = user.getUsername();
+        userDetails.password = user.getPassword();
+        userDetails.state = user.getState();
+        userDetails.roles = user.getRoles();
+        return userDetails;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

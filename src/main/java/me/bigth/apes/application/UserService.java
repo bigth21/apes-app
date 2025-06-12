@@ -20,6 +20,6 @@ public class UserService {
     public void signUp(String username, String password) {
         Authority authority = authorityRepository.findByRole(Role.USER)
                 .orElseThrow(AuthorityNotExistException::new);
-        userRepository.save(new User(username, passwordEncoder.encode(password), List.of(authority)));
+        userRepository.save(new User(username, passwordEncoder.encode(password), UserState.INACTIVE, List.of(authority)));
     }
 }

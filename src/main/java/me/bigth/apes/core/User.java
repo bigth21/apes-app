@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -23,10 +24,10 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<UserAuthority> userAuthorities;
 
-    public User(String username, String password, List<Authority> authorities) {
+    public User(String username, String password, UserState state, List<Authority> authorities) {
         this.username = username;
-        this.state = UserState.INACTIVE;
         this.password = password;
+        this.state = state;
         this.userAuthorities = authorities.stream()
                 .map(a -> new UserAuthority(this, a))
                 .toList();
