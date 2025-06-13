@@ -42,7 +42,7 @@ class SignInControllerTest {
                 .thenReturn(Optional.of(new User("user", "{noop}1234", UserState.ACTIVE, List.of(new Authority(Role.USER)))));
 
         mockMvc.perform(post("/sign-in")
-//                        .with(csrf())
+                        .with(csrf())
                         .param("username", "user")
                         .param("password", "1234"))
                 .andExpect(status().is3xxRedirection())
