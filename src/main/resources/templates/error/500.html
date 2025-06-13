@@ -17,11 +17,9 @@
 <body>
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 <div class="error-container">
-  <h1>500 - Internal Server Error</h1>
-  <p>
-    An unexpected error occurred on the server.<br />
-    If the problem persists, contact the administrator at
-    <a class="email-link" href="mailto:support@apes.com">support@apes.com</a>.
+  <h1 th:text="#{error-500.title}">title</h1>
+  <p th:utext="#{error-500.content}">
+    content
   </p>
 </div>
 </body>

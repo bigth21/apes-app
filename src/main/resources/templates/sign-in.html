@@ -23,29 +23,29 @@
   <section class="sign-in-container">
     <div th:if="${param.error}" class="alert-error">
       <div class="icon">❌</div>
-      <div class="message">
+      <div class="message" th:text="#{sign-in.alert.error}">
         Invalid username and password.
       </div>
     </div>
     <div th:if="${param.logout}" class="alert-logout">
       <div class="icon">🔔</div>
-      <div class="message">
+      <div class="message" th:text="#{sign-in.alert.sign-out}">
         You have been signed out.
       </div>
     </div>
-    <h1 class="sign-in-title">Please Sign In</h1>
+    <h1 class="sign-in-title" th:text="#{sign-in.title}">Please Sign In</h1>
     <!--   TODO: Add placeholder event like google   -->
     <form class="sign-in-form" th:object="${user}" th:method="post" th:action="@{/sign-in}">
       <label>
-        <input th:field="*{username}" type="email" placeholder="Username" autofocus required/>
+        <input th:field="*{username}" type="email" th:placeholder="#{sign-in.username}" autofocus required/>
       </label>
       <label>
-        <input th:field="*{password}" type="password" placeholder="Password" required/>
+        <input th:field="*{password}" type="password" th:placeholder="#{sign-in.password}" required/>
       </label>
-      <button type="submit" value="Sign In">Sign In</button>
+      <button type="submit" th:text="#{sign-in.submit}">Sign In</button>
     </form>
     <p style="text-align: center; margin-top: 1rem;">
-      <a href="/sign-up">Don't have an account? Sign Up</a>
+      <a href="/sign-up" th:text="#{sign-in.sign-up}">Don't have an account? Sign Up</a>
     </p>
   </section>
 </div>

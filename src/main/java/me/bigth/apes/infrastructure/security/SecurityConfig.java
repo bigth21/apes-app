@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,23 +35,25 @@ public class SecurityConfig {
                         .sessionConcurrency(concurrency -> concurrency
                                 .maximumSessions(1)))
                 .authorizeHttpRequests(auth -> {
+                    configureTestEndpointsAccess(auth);
                     auth
                             .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                             .requestMatchers(HttpMethod.GET, STATIC_RESOURCE_PATHS).permitAll()
                             .requestMatchers(HttpMethod.GET, "/").permitAll()
                             .requestMatchers(HttpMethod.GET, "/sign-in").permitAll()
                             .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/sign-up").permitAll();
-
-                    if (isProfileEnabled("local") || isProfileEnabled("test")) {
-                        auth.requestMatchers("/tests/**").permitAll();
-                    } else {
-                        auth.requestMatchers("/tests/**").denyAll();
-                    }
-
-                    auth.anyRequest().authenticated();
+                            .requestMatchers(HttpMethod.POST, "/sign-up").permitAll()
+                            .anyRequest().authenticated();
                 });
         return http.build();
+    }
+
+    private void configureTestEndpointsAccess(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {
+        if (isProfileEnabled("local") || isProfileEnabled("test")) {
+            auth.requestMatchers("/tests/**").permitAll();
+        } else {
+            auth.requestMatchers("/tests/**").denyAll();
+        }
     }
 
     private boolean isProfileEnabled(String profile) {

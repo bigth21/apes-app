@@ -8,11 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SignUpForm {
-    @Email(message = "Email format is invalid.")
+    @Email(message = "{sign-up.username.format.invalid}")
     private String username;
     @Pattern(
             regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,}$",
-            message = "Password must be at least 8 characters long and include letters, numbers, and special characters.")
+            message = "{sign-up.password.pattern.invalid}")
     private String password;
     private String confirmPassword;
 }

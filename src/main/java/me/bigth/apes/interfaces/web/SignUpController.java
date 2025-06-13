@@ -34,12 +34,12 @@ public class SignUpController {
 
         Optional<User> maybeUser = userRepository.findByUsername(form.getUsername());
         if (maybeUser.isPresent()) {
-            result.rejectValue("username", "error.user", "User already exists");
+            result.rejectValue("username","sign-up.username.duplicate");
             return "sign-up";
         }
 
         if (!form.getPassword().equals(form.getConfirmPassword())) {
-            result.rejectValue("password", "error.password", "Passwords do not match");
+            result.rejectValue("password", "sign-up.password.mismatch");
             return "sign-up";
         }
         userService.signUp(form.getUsername(), form.getPassword());
