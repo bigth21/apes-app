@@ -5,6 +5,7 @@ import me.bigth.apes.core.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -13,6 +14,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
+import org.springframework.security.web.access.DelegatingAccessDeniedHandler;
+import org.springframework.security.web.csrf.InvalidCsrfTokenException;
+import org.springframework.security.web.csrf.MissingCsrfTokenException;
+
+import java.util.LinkedHashMap;
 
 @Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
@@ -44,8 +52,21 @@ public class SecurityConfig {
                             .requestMatchers(HttpMethod.GET, "/sign-up").permitAll()
                             .requestMatchers(HttpMethod.POST, "/sign-up").permitAll()
                             .anyRequest().authenticated();
-                });
+                })
+                .exceptionHandling(ex -> ex
+                        .accessDeniedHandler(buildAccessDeniedHandler()));
         return http.build();
+    }
+
+    private DelegatingAccessDeniedHandler buildAccessDeniedHandler() {
+        var csrfHandler = new CsrfAccessDeniedHandler();
+        LinkedHashMap<Class<? extends AccessDeniedException>, AccessDeniedHandler> handlers = new LinkedHashMap<>();
+        handlers.put(MissingCsrfTokenException.class, csrfHandler);
+        handlers.put(InvalidCsrfTokenException.class, csrfHandler);
+
+        var defaultHandler = new AccessDeniedHandlerImpl();
+
+        return new DelegatingAccessDeniedHandler(handlers, defaultHandler);
     }
 
     private void configureTestEndpointsAccess(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {
